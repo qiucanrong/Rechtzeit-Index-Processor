@@ -44,7 +44,7 @@ uploaded = st.file_uploader("**Upload Raw Index File (.docx or .txt)**", type=["
 
 output_format = st.radio(
     "**Output Format**",
-    options=["txt", "docx"],
+    options=["docx", "txt"],
     horizontal=True,
 )
 
