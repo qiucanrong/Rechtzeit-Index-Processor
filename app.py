@@ -40,10 +40,10 @@ def write_docx(lines: List[str]) -> bytes:
 st.set_page_config(page_title="Rechtzeit Index Processor", layout="centered")
 st.title("Judaica Division Rechtzeit Index Processor")
 
-uploaded = st.file_uploader("Upload Raw Index File (.docx or .txt)", type=["txt", "docx"])
+uploaded = st.file_uploader("**Upload Raw Index File (.docx or .txt)**", type=["txt", "docx"])
 
 output_format = st.radio(
-    "Output format",
+    "**Output Format**",
     options=["txt", "docx"],
     horizontal=True,
 )
@@ -64,12 +64,9 @@ if uploaded is not None:
         processed_lines = process_lines([p + "\n" for p in input_paras])
         processed_text = "".join(processed_lines)
 
-    st.subheader("Preview (first 80 lines)")
-    st.text("\n".join(processed_text.splitlines()[:80]))
-
     if output_format == "txt":
         st.download_button(
-            label="Download Processed File (.txt)",
+            label="**Download Processed File** (.txt)",
             data=processed_text.encode("utf-8"),
             file_name="index_processed.txt",
             mime="text/plain",
@@ -77,7 +74,7 @@ if uploaded is not None:
     else:
         docx_bytes = write_docx(processed_lines)
         st.download_button(
-            label="Download Processed File (.docx)",
+            label="**Download Processed File** (.docx)",
             data=docx_bytes,
             file_name="index_processed.docx",
             mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
