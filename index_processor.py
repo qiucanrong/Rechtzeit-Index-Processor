@@ -5,6 +5,7 @@ KNOWN_HEADERS: Dict[str, str] = {
     "A": "@@@Record Albums / CDs Index",
     "B": "@@@Books Index",
     "M": "@@@Films Index",
+    "N": "@@@Newspapers & Periodicals Index",
     "O": "@@@Poems Index",
     "P": "@@@Plays Index",
     "R": "@@@Radio Programs Index",
@@ -48,8 +49,8 @@ def process_lines(lines: Iterable[str]) -> List[str]:
 
         code = line[3] if len(line) >= 4 else ""
 
-        # If somehow the line is exactly "ZZZ" with no code, treat code as empty string
-        # and header becomes "@@@ZZZ" (rare, but deterministic).
+        # If the line is exactly "ZZZ" with no code, treat code as empty string
+        # and header becomes "@@@ZZZ" 
         if code not in seen_codes:
             out.append(_header_for_code(code) + "\n")
             seen_codes.add(code)
